@@ -3,6 +3,7 @@ import {PORT, NODE_ENV} from './config';
 import express from 'express';
 import cors from 'cors';
 //Importar los controladores
+import EstudioController from './controllers/EstudioController';
 
 const server = new Server({
     port: PORT,
@@ -12,7 +13,8 @@ const server = new Server({
         express.urlencoded({extended: true}),
         cors()
     ],
-    controllers: []
+    controllers: [EstudioController.instance]
 });
 
 server.init();
+

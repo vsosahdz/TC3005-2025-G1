@@ -38,6 +38,7 @@ fs
   })
   .forEach(file => { //Las tablas se agregar al objeto de conexión
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
+    console.log(model.name);
     db[model.name] = model;
   });
 //Se cargan las relaciones entre las tablas

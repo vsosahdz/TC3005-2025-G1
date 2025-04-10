@@ -1,5 +1,6 @@
 import express,{Request, Response} from 'express';
 import AbstractController from '../controllers/AbstractController';
+import db from '../models';
 
 class Server{
     //Atributos de instancia
@@ -14,6 +15,7 @@ class Server{
         this.env = appInit.env;
         this.initMiddlewares(appInit.middlewares);
         this.initControllers(appInit.controllers);
+        this.connecDB();
     }
 
     private initMiddlewares(middlewares:any[]): void{
@@ -29,6 +31,13 @@ class Server{
         controllers.forEach(controller => {
             this.app.use(`/${controller.prefix}`, controller.router);
         });
+    }
+    private async connecDB(){
+        try{
+            await db.sequelize.sync({force:false});
+        }catch(err){
+            console.log(err);
+        }
     }
 
     public init(): void{

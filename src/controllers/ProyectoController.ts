@@ -36,3 +36,5 @@ class ProyectoController extends AbstractController{
         }
     }
 }
+export default ProyectoController;
+

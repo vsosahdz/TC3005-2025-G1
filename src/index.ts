@@ -5,6 +5,7 @@ import cors from 'cors';
 //Importar los controladores
 import EstudioController from './controllers/EstudioController';
 import ProyectoController from './controllers/ProyectoController';
+import UserController from './controllers/UserController';
 
 
 const server = new Server({
@@ -15,7 +16,10 @@ const server = new Server({
         express.urlencoded({extended: true}),
         cors()
     ],
-    controllers: [EstudioController.instance, ProyectoController.instance]
+    controllers: [
+        EstudioController.instance,
+        ProyectoController.instance,
+        UserController.instance]
 });
 
 server.init();
